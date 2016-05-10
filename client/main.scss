@@ -1,0 +1,170 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,300);
+
+@import 'reset.scss';
+@import 'variables.scss';
+
+/* ======================= *
+ *        Typography
+ * ======================= */
+body, html {
+  font-family: 'Roboto', sans-serif;
+  color: $text-primary;
+  background: $background-primary;
+}
+
+a {
+  text-decoration: none;
+  color: $color-primary;
+
+  &:active, &:visited {
+    color: $color-primary;
+  }
+
+  &:focus, &:hover {
+    color: darken($color-primary,10%);
+  }
+}
+
+.lead {
+  margin: 1em 0;
+  font-size: 1em;
+  line-height: 1.25em;
+
+  @media screen and (min-width: $screen-sm) {
+    font-size: 2vw;
+    line-height: 2.25vw;
+    font-weight: 300;
+  }
+
+  @media screen and (min-width: $screen-md) {
+    font-size: 1.25em;
+    line-height: 1.5em;
+  }
+
+  @media screen and (min-width: $screen-lg) {
+    font-size: 1.5em;
+    line-height: 1.75em;
+  }
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2.0rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+/* ======================= *
+ *         Grid
+ * ======================= */
+
+.container {
+  max-width: $screen-lg - 2 * $gutter-size;
+  margin: 0 auto;
+  padding: $gutter-size;
+}
+
+.row {
+  margin-bottom: 1em;
+
+  .sm {
+    display: flex;
+  }
+
+  @media screen and (min-width: $screen-md) {
+    display: flex;
+  }
+
+  .col {
+    flex: 1 1 auto;
+    margin: 0 1em;
+
+    .static {
+      flex: 0 1 auto;
+    }
+  }
+}
+
+
+/* ======================= *
+ *         Components
+ * ======================= */
+footer {
+  background: $color-tertiary;
+  color: $text-tertiary;
+}
+
+.clan-sidebar {
+  & > div {
+    @media screen and (min-width: $screen-md) {
+      width: 300px;
+    }
+  }
+  p {
+    font-size: 125%;
+    line-height: 135%;
+  }
+}
+
+td, th {
+  vertical-align: middle;
+
+  &.skill {
+    width: 25px;
+    padding: 0 5px !important;
+    text-align: center !important;
+  }
+
+  &.playerName {
+    width: 100px;
+    padding: 0 5px !important;
+    font-weight: 500 !important;
+  }
+}
+
+/* ======================= *
+ *       Animations
+ * ======================= */
+.swap-enter {
+  opacity: 0.5;
+  transform: translateX(5em);
+  transition: all 0.25s ease-in;
+}
+
+.swap-enter.swap-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.swap-leave {
+  opacity: 0;
+  transform: translateX(0);
+  //transition: all .5s ease-in;
+}
+
+.swap-leave.swap-leave-active {
+  opacity: 0;
+  transform: translateX(-5em);
+}
+
+.example-enter {
+  opacity: 0.01;
+  transition: opacity .25s ease-in;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+}
+
+.example-leave {
+  display: none;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0;
+}

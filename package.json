@@ -1,0 +1,29 @@
+{
+  "name": "clan-tracker",
+  "private": true,
+  "scripts": {
+    "lint": "eslint .",
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "formsy-material-ui": "^0.4.2",
+    "formsy-react": "^0.18.0",
+    "material-ui": "^0.15.0-beta.1",
+    "meteor-node-stubs": "^0.2.3",
+    "react": "^15.0.1",
+    "react-addons-css-transition-group": "^15.0.2",
+    "react-addons-pure-render-mixin": "^15.0.1",
+    "react-dimensions": "^1.1.1",
+    "react-dom": "^15.0.1",
+    "react-router": "^2.3.0",
+    "react-tap-event-plugin": "^1.0.0",
+    "runescape-api": "^1.0.6"
+  },
+  "devDependencies": {
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb": "^8.0.0",
+    "eslint-plugin-import": "^1.6.1",
+    "eslint-plugin-jsx-a11y": "^1.0.4",
+    "eslint-plugin-react": "^5.0.1"
+  }
+}

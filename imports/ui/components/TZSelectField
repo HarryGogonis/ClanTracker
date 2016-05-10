@@ -1,0 +1,29 @@
+import React, { Component } from 'react';
+
+import SelectField from 'material-ui/lib/select-field';
+import MenuItem from 'material-ui/lib/menus/menu-item';
+
+export default class TZSelectField extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: 2 };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange = (event, index, value) => this.setState({ value });
+
+  render() {
+    return(
+      <SelectField value={this.state.value} onChange={this.handleChange}>
+        <MenuItem
+          value={1}
+          primaryText="(GMT-12:00) International Date Line West"
+        />
+        <MenuItem
+          value={2}
+          primaryText="(GMT-11:00) Midway Island, Samoa"
+        />
+      </SelectField> 
+    );
+  }
+}
