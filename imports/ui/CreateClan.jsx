@@ -26,6 +26,13 @@ const removeEmptyStrings = (obj) => {
   return newObj;
 };
 
+const parseForm = (form) => {
+  const data = removeEmptyStrings(form);
+  if (data.homeworld) data.homeworld = Number.parseInt(data.homeworld, 10);
+  if (data.timezone) data.timezone = Number.parseInt(data.timezone, 10);
+  return data;
+};
+
 export default class CreateClan extends Component {
   constructor(props) {
     super(props);
@@ -41,13 +48,13 @@ export default class CreateClan extends Component {
   }
 
   submitForm(data) {
-    console.log('Form submit', removeEmptyStrings(data));
-    Clans.insert(removeEmptyStrings(data), (error, id) => {
+    console.log('Form submit', parseForm(data));
+    Clans.insert(parseForm(data), (error, id) => {
       if (error) {
         console.error(error);
       } else {
         console.log(id);
-        browserHistory.push(`/clan/${id}`);
+        browserHistory.push(`/clans/${id}`);
       }
     });
   }
@@ -124,6 +131,16 @@ export default class CreateClan extends Component {
         <div className="row">
           <div className="col">
             <FormsyText
+              name="chatname"
+              hintText="Zchat"
+              floatingLabelText="Clan chat (optional)"
+              fullWidth
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <FormsyText
               name="description"
               hintText="What is your clan all about? What are the requirements?"
               floatingLabelText="Description (optional)"
@@ -149,6 +166,7 @@ export default class CreateClan extends Component {
               name="timezone"
               floatingLabelText="Timezone"
               fullWidth
+              autoFill={false}
             />
           </div>
         </div>

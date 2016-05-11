@@ -16,7 +16,12 @@ export default class SelectFieldTimezone extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { value: tzOffset };
+
+    if (props.autoFill) {
+      this.state = { value: tzOffset };
+    } else {
+      this.state = { value: null };
+    }
     this.handleChange = this.handleChange.bind(this);
   }
 

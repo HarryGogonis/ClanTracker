@@ -7,17 +7,38 @@ import Title from 'react-title-component';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Formsy from 'formsy-react';
-import Divider from 'material-ui/Divider';
 import FormsyText from 'formsy-material-ui/lib/FormsyText';
 import ActionDeleteForever from 'material-ui/svg-icons/action/delete-forever';
 import ActionUpdate from 'material-ui/svg-icons/action/update';
 import NavigationArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
+import Chat from 'material-ui/svg-icons/communication/chat';
+import SocialPublic from 'material-ui/svg-icons/social/public';
+import ActionSchedule from 'material-ui/svg-icons/action/schedule';
+
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import Paper from 'material-ui/Paper';
+import { Menu, MenuItem } from 'material-ui/Menu';
+import Subheader from 'material-ui/Subheader';
+import { fullWhite } from 'material-ui/styles/colors';
 
 import ClanPlayers from './ClanPlayers';
 
 import { Clans } from '../api/clans.js';
 import { Players } from '../api/players.js';
+
+const styles = {
+  clanList: {
+    width: '100%',
+    display: 'block',
+  },
+  clanInfo: {
+    color: fullWhite,
+  },
+  clanDescription: {
+    whiteSpace: 'wrap',
+    color: fullWhite,
+  }
+};
 
 class Clan extends Component {
   constructor(props) {
@@ -89,32 +110,78 @@ class Clan extends Component {
   renderClanSidebar() {
     const clan = this.props.clan;
     return (
-      <Card>
-        <CardText>
-          <p>
-            {clan.description}
-          </p>
-
-          <Divider />
-
-          <h4><label>Home world</label> {clan.homeworld}</h4>
-          <h4><b>Timezone</b> {clan.timezone}</h4>
-        </CardText>
-        <CardActions>
-          <FlatButton
-            label="Delete"
-            linkButton
-            onClick={this.deleteClan}
-            icon={<ActionDeleteForever />}
+      <Paper zDepth={1}>
+        <Menu
+          autoWidth={false}
+          desktop
+          //style={{ width: '100%', display: 'block' }}
+          listStyle={styles.clanList}
+        >
+          <MenuItem
+            primaryText={clan.description}
+            style={styles.clanDescription}
+            disabled
           />
-          <RaisedButton
-            label="Update"
-            linkButton
-            onClick={this.updateClan}
-            icon={<ActionUpdate />}
+          <Subheader>Clan Information</Subheader>
+          <MenuItem
+            primaryText="Home world"
+            secondaryText={
+              <span style={styles.clanInfo}>
+                {clan.homeworld}
+              </span>
+            }
+            leftIcon={<SocialPublic />}
+            disabled
           />
-        </CardActions>
-      </Card>
+          <MenuItem
+            primaryText="Time zone"
+            secondaryText={
+              <span style={styles.clanInfo}>
+                {clan.timezone}
+              </span>
+            }
+            leftIcon={<ActionSchedule />}
+            disabled
+          />
+          <MenuItem
+            primaryText="Clan chat"
+            secondaryText={
+              <span style={styles.clanInfo}>
+                {clan.chatname}
+              </span>
+            }
+            leftIcon={<Chat />}
+            disabled
+          />
+          <Subheader>Clan Statistics</Subheader>
+          <MenuItem
+            primaryText="Total members"
+            secondaryText={<span style={styles.clanInfo}>0</span>}
+            disabled
+          />
+          <MenuItem
+            primaryText="Combat average"
+            secondaryText={<span style={styles.clanInfo}>0</span>}
+            disabled
+          />
+          <MenuItem
+            primaryText="Total average"
+            secondaryText={<span style={styles.clanInfo}>0</span>}
+            disabled
+          />
+          <Subheader>Administration</Subheader>
+          <MenuItem
+            primaryText="Delete"
+            leftIcon={<ActionDeleteForever />}
+            onTouchTap={this.deleteClan}
+          />
+          <MenuItem
+            primaryText="Update"
+            leftIcon={<ActionUpdate />}
+            onTouchTap={this.updateClan}
+          />
+        </Menu>
+      </Paper>
     );
   }
 
