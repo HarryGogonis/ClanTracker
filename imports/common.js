@@ -136,7 +136,7 @@ Schemas.Clan = new SimpleSchema({
   },
   tag: {
     type: String,
-    max: 8,
+    max: 6,
   },
   description: {
     type: String,
@@ -148,6 +148,14 @@ Schemas.Clan = new SimpleSchema({
     optional: true,
   },
   homeworld: {
+    type: Number,
+    optional: true,
+  },
+  chatname: {
+    type: String,
+    max: 12,
+  },
+  timezone: {
     type: Number,
     optional: true,
   },
